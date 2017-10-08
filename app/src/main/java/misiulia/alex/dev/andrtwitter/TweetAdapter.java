@@ -41,16 +41,26 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
         private TextView mNickTextView;
         private TextView mContentTextView;
         private TextView mCommentsTextView;
-        private TextView mRepostsTextView;
+        private TextView mRetweetsTextView;
         private TextView mLikesTextView;
 
         public TweetViewHolder(View itemView) {
             super(itemView);
-
+            mNameTextView = itemView.findViewById(R.id.author_name_text_view);
+            mNickTextView = itemView.findViewById(R.id.author_nick_text_view);
+            mContentTextView = itemView.findViewById(R.id.tweet_content_text_view);
+            mCommentsTextView = itemView.findViewById(R.id.comments_text_view);
+            mRetweetsTextView = itemView.findViewById(R.id.retweets_text_view);
+            mLikesTextView = itemView.findViewById(R.id.likes_text_view);
         }
 
         public void bind(Tweet tweet) {
-
+            mNameTextView.setText(tweet.name);
+            mNickTextView.setText(tweet.nick + " "  + tweet.dateString);
+            mContentTextView.setText(tweet.content);
+            mCommentsTextView.setText(String.valueOf(tweet.comments));
+            mRetweetsTextView.setText(String.valueOf(tweet.retweets));
+            mLikesTextView.setText(String.valueOf(tweet.likes));
         }
     }
 }
