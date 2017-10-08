@@ -1,130 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchParent">
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical"
-                  android:padding="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:src="@drawable/chack_profile"/>
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:padding="10dp">
 
-        <TextView
-            style="@style/WrapContent"
-            android:layout_marginTop="@dimen/text_margin"
-            android:text="@string/chuck_norris_name"
-            android:textAppearance="@style/TextRegular.Primary.Big"/>
-
-        <TextView
-            style="@style/WrapContent"
-            android:layout_marginTop="@dimen/text_margin"
-            android:text="@string/chuck_norris_nick"
-            android:textAppearance="@style/TextRegular.Secondary"/>
-
-        <TextView
-            style="@style/WrapContent"
-            android:layout_marginTop="@dimen/text_margin"
-            android:text="@string/chuck_norris_info"
-            android:textAppearance="@style/TextRegular.Primary"/>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_margin"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                style="@style/BigPhoto"
+                android:src="@drawable/chack_profile"/>
 
             <TextView
-                android:id="@+id/location_icon_text_view"
-                android:layout_alignParentStart="true"
-                style="@style/TextIcon"
-                android:layout_marginBottom="@dimen/text_margin"
-                android:text="@string/fa_map_marker"
-            />
-
-            <TextView
-                android:id="@+id/location_text_view"
-                android:layout_toEndOf="@+id/location_icon_text_view"
-                android:layout_alignBaseline="@id/location_icon_text_view"
                 style="@style/WrapContent"
-                android:layout_marginLeft="10dp"
-                android:text="@string/chuck_norris_location"
-                android:textAppearance="@style/TextRegular.Secondary"
-            />
-
+                android:layout_marginTop="@dimen/text_margin"
+                android:text="@string/chuck_norris_name"
+                android:textAppearance="@style/TextRegular.Primary.Big"/>
 
             <TextView
-                android:id="@+id/link_icon_text_view"
-                android:layout_toEndOf="@id/location_text_view"
-                style="@style/TextIcon"
-                android:layout_marginBottom="@dimen/text_margin"
-                android:layout_marginLeft="20dp"
-                android:text="@string/fa_link"
-            />
-
-            <TextView
-                android:id="@+id/link_text_view"
-                android:layout_toEndOf="@id/link_icon_text_view"
-                android:layout_alignBaseline="@id/link_icon_text_view"
                 style="@style/WrapContent"
-                android:layout_marginLeft="10dp"
-                android:autoLink="web"
-                android:text="@string/chuck_norris_link"
-                android:textAppearance="@style/TextRegular.Secondary"
-            />
-
+                android:layout_marginTop="@dimen/text_margin"
+                android:text="@string/chuck_norris_nick"
+                android:textAppearance="@style/TextRegular.Secondary"/>
 
             <TextView
-                android:id="@+id/following_count_text_view"
-                android:layout_alignParentStart="true"
-                android:layout_below="@id/location_icon_text_view"
-                android:layout_alignStart="@id/link_icon_text_view"
                 style="@style/WrapContent"
-                android:textAppearance="@style/TextRegular.Primary"
-                android:textStyle="bold"
-                android:text="4"
-            />
+                android:layout_marginTop="@dimen/text_margin"
+                android:text="@string/chuck_norris_info"
+                android:textAppearance="@style/TextRegular.Primary"/>
 
-            <TextView
-                android:id="@+id/following_hint_text_view"
-                android:layout_toEndOf="@id/following_count_text_view"
-                android:layout_below="@id/location_icon_text_view"
-                style="@style/WrapContent"
-                android:layout_marginLeft="10dp"
-                android:text="@string/following_hint"
-                android:textAppearance="@style/TextRegular.Secondary"
-            />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/text_margin"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/followers_count_text_view"
-                android:layout_below="@id/link_icon_text_view"
-                android:layout_alignStart="@id/link_icon_text_view"
-                style="@style/WrapContent"
-                android:textAppearance="@style/TextRegular.Primary"
-                android:textStyle="bold"
-                android:text="119K"
-            />
+                <TextView
+                    android:id="@+id/location_icon_text_view"
+                    style="@style/TextIcon"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="@dimen/text_margin"
+                    android:text="@string/fa_map_marker"
+                />
 
-            <TextView
-                android:id="@+id/followers_hint_text_view"
-                android:layout_below="@id/link_icon_text_view"
-                android:layout_toEndOf="@id/followers_count_text_view"
-                style="@style/WrapContent"
-                android:layout_marginLeft="10dp"
-                android:text="@string/followers_hint"
-                android:textAppearance="@style/TextRegular.Secondary"
-            />
+                <TextView
+                    android:id="@+id/location_text_view"
+                    style="@style/WrapContent"
+                    android:layout_alignBaseline="@id/location_icon_text_view"
+                    android:layout_toEndOf="@+id/location_icon_text_view"
+                    android:text="@string/chuck_norris_location"
+                    android:textAppearance="@style/TextRegular.Secondary"
+                />
 
-        </RelativeLayout>
 
+                <TextView
+                    android:id="@+id/link_icon_text_view"
+                    style="@style/TextIcon"
+                    android:layout_marginBottom="@dimen/text_margin"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@id/location_text_view"
+                    android:text="@string/fa_link"
+                />
+
+                <TextView
+                    android:id="@+id/link_text_view"
+                    style="@style/WrapContent"
+                    android:layout_alignBaseline="@id/link_icon_text_view"
+                    android:layout_toEndOf="@id/link_icon_text_view"
+                    android:autoLink="web"
+                    android:text="@string/chuck_norris_link"
+                    android:textAppearance="@style/TextRegular.Secondary"
+                />
+
+
+                <TextView
+                    android:id="@+id/following_count_text_view"
+                    style="@style/WrapContent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignStart="@id/link_icon_text_view"
+                    android:layout_below="@id/location_icon_text_view"
+                    android:text="4"
+                    android:textAppearance="@style/TextRegular.Primary"
+                    android:textStyle="bold"
+                />
+
+                <TextView
+                    android:id="@+id/following_hint_text_view"
+                    style="@style/WrapContent"
+                    android:layout_below="@id/location_icon_text_view"
+                    android:layout_marginStart="@dimen/text_margin"
+                    android:layout_toEndOf="@id/following_count_text_view"
+                    android:text="@string/following_hint"
+                    android:textAppearance="@style/TextRegular.Secondary"
+                />
+
+                <TextView
+                    android:id="@+id/followers_count_text_view"
+                    style="@style/WrapContent"
+                    android:layout_alignStart="@id/link_icon_text_view"
+                    android:layout_below="@id/link_icon_text_view"
+                    android:text="119K"
+                    android:textAppearance="@style/TextRegular.Primary"
+                    android:textStyle="bold"
+                />
+
+                <TextView
+                    android:id="@+id/followers_hint_text_view"
+                    style="@style/WrapContent"
+                    android:layout_below="@id/link_icon_text_view"
+                    android:layout_marginStart="@dimen/text_margin"
+                    android:layout_toEndOf="@id/followers_count_text_view"
+                    android:text="@string/followers_hint"
+                    android:textAppearance="@style/TextRegular.Secondary"
+                />
+
+            </RelativeLayout>
 
 
         </LinearLayout>
 
+        <View android:layout_width="match_parent"
+              android:layout_height="6dp"
+              android:background="@color/gray_mercury"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="@dimen/text_margin"
+            android:id="@+id/tweets_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
     </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+

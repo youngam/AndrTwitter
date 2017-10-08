@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 
+def supportVersion = '26.1.0'
+
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
@@ -33,5 +36,8 @@ dependencies {
 
     // library for fonts
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
+
+    compile "com.android.support:recyclerview-v7:$supportVersion"
+
     testCompile 'junit:junit:4.12'
 }
