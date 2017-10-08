@@ -35,6 +35,11 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
         return mTweetList.size();
     }
 
+    public void addTweet(Tweet newTweet) {
+        mTweetList.add(0, newTweet);
+        notifyItemInserted(0);
+    }
+
     class TweetViewHolder extends RecyclerView.ViewHolder {
         private ImageView mImageView;
         private TextView mNameTextView;

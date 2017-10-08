@@ -5,13 +5,20 @@ import static java.util.Arrays.asList;
 import java.util.List;
 import java.util.Random;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.widget.EditText;
 
 public class UserInfoActivity extends BaseActivity {
     private static String CHUCK_NAME = "Chuck Jokes";
@@ -21,6 +28,7 @@ public class UserInfoActivity extends BaseActivity {
 
 
     private RecyclerView mRecyclerView;
+    private FloatingActionButton mCreateTweetFab;
     private TweetAdapter mTweetAdapter;
 
     @Override
@@ -29,6 +37,13 @@ public class UserInfoActivity extends BaseActivity {
         setContentView(R.layout.user_info_activity_layout);
 
         mRecyclerView = findViewById(R.id.tweets_recycler_view);
+        mCreateTweetFab = findViewById(R.id.add_tweet_fab);
+        mCreateTweetFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCreateTweetDialog();
+            }
+        });
 
         // for smooth scroll inside NestedScrollView
         ViewCompat.setNestedScrollingEnabled(mRecyclerView, false);
@@ -38,6 +53,31 @@ public class UserInfoActivity extends BaseActivity {
         mRecyclerView.setAdapter(mTweetAdapter);
 
         requestUserInfo();
+    }
+
+    private void showCreateTweetDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.create_tweet_dialog_layout, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText contentEditText = dialogView.findViewById(R.id.tweet_content_edit_text);
+
+        dialogBuilder.setTitle("What's on your mind?");
+        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String content = contentEditText.getText().toString();
+                Tweet newTweet = new Tweet(CHUCK_NAME, CHUCK_NIK, "5 sec", content, false);
+                mTweetAdapter.addTweet(newTweet);
+            }
+        });
+        dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //pass
+            }
+        });
+        AlertDialog b = dialogBuilder.create();
+        b.show();
     }
 
     private void requestUserInfo() {

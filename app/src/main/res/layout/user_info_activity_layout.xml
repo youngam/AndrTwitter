@@ -145,7 +145,7 @@
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_part_class_fab"
+        android:id="@+id/add_tweet_fab"
         style="@style/FabButton.Create"
         android:layout_gravity="bottom|end"/>
 </android.support.design.widget.CoordinatorLayout>
