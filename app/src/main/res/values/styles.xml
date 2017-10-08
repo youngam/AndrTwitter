@@ -63,4 +63,13 @@
         <item name="android:layout_height">46dp</item>
     </style>
 
+    <style name="FabButton" parent="WrapContent">
+        <item name="android:layout_margin">16dp</item>
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="layout_behavior">misiulia.alex.dev.andrtwitter.FabAwareScrollBehaviour</item>
+    </style>
+
+    <style name="FabButton.Create">
+        <item name="android:src">@drawable/ic_create_white_24dp</item>
+    </style>
 </resources>
