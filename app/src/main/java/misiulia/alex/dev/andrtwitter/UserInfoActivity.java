@@ -2,6 +2,7 @@ package misiulia.alex.dev.andrtwitter;
 
 import static java.util.Arrays.asList;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -17,12 +18,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
 
 public class UserInfoActivity extends BaseActivity {
-    private static String CHUCK_NAME = "Chuck Jokes";
-    private static String CHUCK_NIK = "@chuckjokes";
+    private static String CHUCK_NAME = "AndroidLearning";
+    private static String CHUCK_NIK = "@it_pro_learning";
+    private int mHoursCounter = 20;
 
     public static final Random RANDOM = new Random();
 
@@ -63,15 +64,15 @@ public class UserInfoActivity extends BaseActivity {
 
         final EditText contentEditText = dialogView.findViewById(R.id.tweet_content_edit_text);
 
-        dialogBuilder.setTitle("What's on your mind?");
-        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+        dialogBuilder.setTitle("Что происходит?");
+        dialogBuilder.setPositiveButton("Ок", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String content = contentEditText.getText().toString();
                 Tweet newTweet = new Tweet(CHUCK_NAME, CHUCK_NIK, "5 sec", content, false);
                 mTweetAdapter.addTweet(newTweet);
             }
         });
-        dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        dialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 //pass
             }
@@ -84,18 +85,44 @@ public class UserInfoActivity extends BaseActivity {
         new AsyncTask<Void, Void, List<Tweet>>() {
             @Override
             protected List<Tweet> doInBackground(Void... voids) {
-                return asList(
-                        getNorrisTweet("When Chuck Norris was born he drove his mom home from the hospital"),
-                        getNorrisTweet("Chuck Norris has a diary. It's called the Guinness Book of World Records."),
-                        getNorrisTweet("Chuck Norris doesn't worry about high gas prices. His vehicles run on fear."),
-                        getNorrisTweet("Chuck Norris can kill two stones with one bird."),
-                        getNorrisTweet("When a zombie apocalypse starts, Chuck Norris doesn't try to survive. The zombies do."),
-                        getNorrisTweet("There once was a street called Chuck Norris, but the name was changed for" +
-                                " public safety because nobody crosses Chuck Norris and lives."),
-                        getNorrisTweet("It is considered a great accomplishment to go down Niagara Falls in a wooden barrel. " +
-                                "Chuck Norris can go up Niagara Falls in a cardboard box..")
-
+                List<Tweet> list = asList(
+                        getTweet("Урок 1\n" +
+                                "Установка Android Studio. Создание Hello world."),
+                        getTweet("Урок 2\n" +
+                                "Структура проекта. Activity, AndroidManifest."),
+                        getTweet("Урок 3\n" +
+                                "Типы Layout: Linear, Relative, Frame."),
+                        getTweet("Урок 4\n" +
+                                "Views: Button, TextView, EditText. Доступ к View из Java кода."),
+                        getTweet("Урок 5\n" +
+                                "Практика. Создание экрана информации о пользователе."),
+                        getTweet("Урок 6\n" +
+                                "Графика. Работа с PNG иконками. Знакомство со шрифтами. Создание иконок с помощью шрифта Font-Awesome."),
+                        getTweet("Урок 7\n" +
+                                "Практика. Создание макета для элемента списка твитов."),
+                        getTweet("Урок 8\n" +
+                                "RecyclerView. Принцип работы. Adapter паттерн."),
+                        getTweet("Урок 9\n" +
+                                "Практика. Добавление твитов в RecyclerView, используя сгенерированные объекты."),
+                        getTweet("Урок 10\n" +
+                                "Практика. Навигация между Активити, переход на информацию о пользователе."),
+                        getTweet("Урок 11\n" +
+                                "Asynctask. Что такое Thread? Почему нельзя всё сделать в одном Thread?"),
+                        getTweet("Урок 12\n" +
+                                "Практика. Добавление авторизации, используя twitter-kit библиотеку."),
+                        getTweet("Урок 13\n" +
+                                "HTTP. Как сделать GET, POST запросы. Считывание ответа, преобразование к строке."),
+                        getTweet("Урок 14\n" +
+                                "Формат обмена данными JSON. Преобразование строки к формату JsonObject, к обычному Java объекту."),
+                        getTweet("Урок 15\n" +
+                                "Практика. Добавление HTTP-запросов для считывания информации о пользователе."),
+                        getTweet("Урок 16\n" +
+                                "Практика. Добавление HTTP-запросов для считывания твитов пользователя."),
+                        getTweet("Урок 17\n" +
+                                "Обработка ошибок. Показ сообщения об ошибке пользователю.")
                 );
+                Collections.reverse(list);
+                return list;
             }
 
             @Override
@@ -106,7 +133,7 @@ public class UserInfoActivity extends BaseActivity {
         }.execute();
     }
 
-    private Tweet getNorrisTweet(String content) {
-        return new Tweet(CHUCK_NAME, CHUCK_NIK, RANDOM.nextInt(12) + " h", content);
+    private Tweet getTweet(String content) {
+        return new Tweet(CHUCK_NAME, CHUCK_NIK, mHoursCounter-- + " h", content);
     }
 }

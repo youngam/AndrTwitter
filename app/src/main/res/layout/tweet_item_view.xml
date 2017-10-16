@@ -6,7 +6,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         style="@style/SmallPhoto"
-        android:src="@drawable/chack_profile"/>
+        android:src="@drawable/user_profile"/>
 
     <RelativeLayout
         android:layout_marginStart="@dimen/text_margin"
@@ -15,7 +15,7 @@
         <TextView
             android:id="@+id/author_name_text_view"
             style="@style/WrapContent"
-            android:text="@string/chuck_norris_name"
+            android:text="@string/user_name"
             android:textStyle="bold"
             android:textAppearance="@style/TextRegular.Primary"/>
 
@@ -24,7 +24,7 @@
             style="@style/WrapContent"
             android:layout_toEndOf="@+id/author_name_text_view"
             android:layout_marginStart="@dimen/text_margin"
-            android:text="@string/chuck_norris_nick"
+            android:text="@string/user_nick"
             android:textAppearance="@style/TextRegular.Secondary"/>
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_below="@id/author_name_text_view"
             style="@style/WrapContent"
             android:layout_marginTop="@dimen/text_margin"
-            android:text="@string/chuck_norris_info"
+            android:text="@string/user_info"
             android:textAppearance="@style/TextRegular.Primary"/>
 
         <LinearLayout

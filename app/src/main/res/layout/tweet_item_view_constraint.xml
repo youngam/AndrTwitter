@@ -10,7 +10,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         style="@style/SmallPhoto"
-        android:src="@drawable/chack_profile" tools:layout_editor_absoluteY="10dp"
+        android:src="@drawable/user_profile" tools:layout_editor_absoluteY="10dp"
         tools:layout_editor_absoluteX="10dp"/>
 
     <TextView
@@ -18,7 +18,7 @@
         style="@style/WrapContent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="@string/chuck_norris_name"
+        android:text="@string/user_name"
         android:textAppearance="@style/TextRegular.Primary"
         android:textStyle="bold"
         tools:layout_editor_absoluteY="18dp" tools:layout_editor_absoluteX="71dp"/>
@@ -28,7 +28,7 @@
         style="@style/WrapContent"
         android:layout_marginStart="@dimen/text_margin"
         android:layout_toEndOf="@+id/author_name_text_view"
-        android:text="@string/chuck_norris_nick"
+        android:text="@string/user_nick"
         android:textAppearance="@style/TextRegular.Secondary"
         tools:layout_editor_absoluteY="18dp" tools:layout_editor_absoluteX="171dp"/>
 
@@ -36,7 +36,7 @@
         android:id="@+id/tweet_content_text_view"
         style="@style/WrapContent"
         android:layout_below="@id/author_name_text_view"
-        android:text="@string/chuck_norris_info" android:textAppearance="@style/TextRegular.Primary"
+        android:text="@string/user_info" android:textAppearance="@style/TextRegular.Primary"
         tools:layout_editor_absoluteY="49dp" tools:layout_editor_absoluteX="71dp"/>
 
 

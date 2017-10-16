@@ -17,6 +17,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTwitterLoginButton = (TwitterLoginButton) findViewById(R.id.login_button);
+        mTwitterLoginButton.setText(R.string.sign_in_with_twitter);
         mTwitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
