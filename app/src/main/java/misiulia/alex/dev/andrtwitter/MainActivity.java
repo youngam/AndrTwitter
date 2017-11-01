@@ -1,5 +1,7 @@
 package misiulia.alex.dev.andrtwitter;
 
+import static misiulia.alex.dev.andrtwitter.UserInfoActivity.USER_ID;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,6 +11,8 @@ import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
+import misiulia.alex.dev.andrtwitter.oauth.AuthPreference;
+
 public class MainActivity extends BaseActivity {
     private TwitterLoginButton mTwitterLoginButton;
 
@@ -16,12 +20,14 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mTwitterLoginButton = (TwitterLoginButton) findViewById(R.id.login_button);
+        mTwitterLoginButton = findViewById(R.id.login_button);
         mTwitterLoginButton.setText(R.string.sign_in_with_twitter);
         mTwitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
-                startActivity(new Intent(MainActivity.this, UserInfoActivity.class));
+                AuthPreference.getInstance().setTwitterSession(result.data);
+                startActivity(new Intent(MainActivity.this, UserInfoActivity.class)
+                                        .putExtra(USER_ID, result.data.getUserId()));
             }
 
             @Override

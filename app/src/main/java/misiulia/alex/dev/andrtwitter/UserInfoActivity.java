@@ -1,9 +1,5 @@
 package misiulia.alex.dev.andrtwitter;
 
-import static java.util.Arrays.asList;
-
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import android.content.DialogInterface;
@@ -19,10 +15,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import misiulia.alex.dev.andrtwitter.entity.Profile;
+import misiulia.alex.dev.andrtwitter.network.HttpClient;
 
 public class UserInfoActivity extends BaseActivity {
     private static String CHUCK_NAME = "AndroidLearning";
     private static String CHUCK_NIK = "@it_pro_learning";
+    public static String USER_ID = "UserId";
     private int mHoursCounter = 20;
 
     public static final Random RANDOM = new Random();
@@ -31,6 +32,8 @@ public class UserInfoActivity extends BaseActivity {
     private RecyclerView mRecyclerView;
     private FloatingActionButton mCreateTweetFab;
     private TweetAdapter mTweetAdapter;
+
+    private HttpClient mHttpClient;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +56,17 @@ public class UserInfoActivity extends BaseActivity {
         mTweetAdapter = new TweetAdapter();
         mRecyclerView.setAdapter(mTweetAdapter);
 
-        requestUserInfo();
+        mHttpClient = new HttpClient();
+
+        Long userId = getIntent().getLongExtra(USER_ID, -1);
+
+        if(userId  != -1) {
+            requestUserInfo(userId);
+        }
+        else {
+            Toast.makeText(this, "User id isn't passed to screen", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
     private void showCreateTweetDialog() {
@@ -81,56 +94,36 @@ public class UserInfoActivity extends BaseActivity {
         b.show();
     }
 
-    private void requestUserInfo() {
-        new AsyncTask<Void, Void, List<Tweet>>() {
-            @Override
-            protected List<Tweet> doInBackground(Void... voids) {
-                List<Tweet> list = asList(
-                        getTweet("Урок 1\n" +
-                                "Установка Android Studio. Создание Hello world."),
-                        getTweet("Урок 2\n" +
-                                "Структура проекта. Activity, AndroidManifest."),
-                        getTweet("Урок 3\n" +
-                                "Типы Layout: Linear, Relative, Frame."),
-                        getTweet("Урок 4\n" +
-                                "Views: Button, TextView, EditText. Доступ к View из Java кода."),
-                        getTweet("Урок 5\n" +
-                                "Практика. Создание экрана информации о пользователе."),
-                        getTweet("Урок 6\n" +
-                                "Графика. Работа с PNG иконками. Знакомство со шрифтами. Создание иконок с помощью шрифта Font-Awesome."),
-                        getTweet("Урок 7\n" +
-                                "Практика. Создание макета для элемента списка твитов."),
-                        getTweet("Урок 8\n" +
-                                "RecyclerView. Принцип работы. Adapter паттерн."),
-                        getTweet("Урок 9\n" +
-                                "Практика. Добавление твитов в RecyclerView, используя сгенерированные объекты."),
-                        getTweet("Урок 10\n" +
-                                "Практика. Навигация между Активити, переход на информацию о пользователе."),
-                        getTweet("Урок 11\n" +
-                                "Asynctask. Что такое Thread? Почему нельзя всё сделать в одном Thread?"),
-                        getTweet("Урок 12\n" +
-                                "Практика. Добавление авторизации, используя twitter-kit библиотеку."),
-                        getTweet("Урок 13\n" +
-                                "HTTP. Как сделать GET, POST запросы. Считывание ответа, преобразование к строке."),
-                        getTweet("Урок 14\n" +
-                                "Формат обмена данными JSON. Преобразование строки к формату JsonObject, к обычному Java объекту."),
-                        getTweet("Урок 15\n" +
-                                "Практика. Добавление HTTP-запросов для считывания информации о пользователе."),
-                        getTweet("Урок 16\n" +
-                                "Практика. Добавление HTTP-запросов для считывания твитов пользователя."),
-                        getTweet("Урок 17\n" +
-                                "Обработка ошибок. Показ сообщения об ошибке пользователю.")
-                );
-                Collections.reverse(list);
-                return list;
-            }
+    private void readProfiles() {
 
-            @Override
-            protected void onPostExecute(List<Tweet> tweets) {
-                super.onPostExecute(tweets);
-                mTweetAdapter.setItems(tweets);
-            }
-        }.execute();
+    }
+
+
+    private void displayProfile(Profile profile) {
+
+    }
+
+    static class ReadProfileTask extends AsyncTask<Long, Void, Profile> {
+        private UserInfoActivity mUserInfoActivity;
+
+        public ReadProfileTask(UserInfoActivity userInfoActivity) {
+            mUserInfoActivity = userInfoActivity;
+        }
+
+        @Override
+        protected Profile doInBackground(Long... ids) {
+            return mUserInfoActivity.mHttpClient.readProfile(ids[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Profile profile) {
+            super.onPostExecute(profile);
+            mUserInfoActivity.displayProfile(profile);
+        }
+
+    }
+    private void requestUserInfo(long userId) {
+        new ReadProfileTask(this).execute(userId);
     }
 
     private Tweet getTweet(String content) {
