@@ -7,18 +7,25 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.internal.oauth.OAuth1aHeaders;
 
+import misiulia.alex.dev.andrtwitter.entity.Tweet;
 import misiulia.alex.dev.andrtwitter.entity.User;
 import misiulia.alex.dev.andrtwitter.oauth.AuthPreference;
 
@@ -29,12 +36,31 @@ public class HttpClient {
     private Gson mGson = new Gson();
 
     public User readProfile(long userId) {
-        String methodUrl = format(Locale.ROOT, "%s/%s=%d", API_URL, "users/show.json?user_id", userId);
+        String requestUrl = format(Locale.ROOT, "%s/%s=%d", API_URL, "users/show.json?user_id", userId);
+        String response = getResponseString(requestUrl);
+
+        User user = mGson.fromJson(response, User.class);
+        Log.d("LmTest", "response : " + response);
+        return user;
+    }
+
+    public Collection<Tweet> readTweets(long userId) {
+        String requestUrl = format(Locale.ROOT, "%s/%s=%d", API_URL, "statuses/user_timeline.json?user_id", userId);
+        String response = getResponseString(requestUrl);
+
+        Type listType = new TypeToken<ArrayList<Tweet>>(){}.getType();
+        Log.d("LmTest", "response : " + response);
+        List<Tweet> tweets = mGson.fromJson(response, listType);
+        return tweets;
+    }
+
+    @NonNull
+    private String getResponseString(String requestUrl) {
         String response = null;
         try {
-            URL url = new URL(methodUrl);
+            URL url = new URL(requestUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestProperty(HEADER_AUTHORIZATION, getAuthHeader(GET, methodUrl));
+            connection.setRequestProperty(HEADER_AUTHORIZATION, getAuthHeader(GET, requestUrl));
             connection.connect();
             InputStream in;
             int status = connection.getResponseCode();
@@ -48,10 +74,7 @@ public class HttpClient {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        User user = mGson.fromJson(response, User.class);
-        Log.d("LmTest", "response : " + response);
-        return user;
+        return response;
     }
 
     private static String convertStreamToString(InputStream is) {

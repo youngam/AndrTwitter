@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 
 public class User {
+    public static final String USER = "user";
 
     @SerializedName("id")
     private Long id;

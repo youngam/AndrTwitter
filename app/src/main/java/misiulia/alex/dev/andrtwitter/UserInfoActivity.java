@@ -1,24 +1,23 @@
 package misiulia.alex.dev.andrtwitter;
 
-import android.content.DialogInterface;
+import java.util.Collection;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import misiulia.alex.dev.andrtwitter.entity.Tweet;
 import misiulia.alex.dev.andrtwitter.entity.User;
 import misiulia.alex.dev.andrtwitter.network.HttpClient;
 
@@ -89,7 +88,7 @@ public class UserInfoActivity extends BaseActivity {
     }
 
     private void showCreateTweetDialog() {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+/*        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.create_tweet_dialog_layout, null);
         dialogBuilder.setView(dialogView);
@@ -100,7 +99,7 @@ public class UserInfoActivity extends BaseActivity {
         dialogBuilder.setPositiveButton("Ок", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String content = contentEditText.getText().toString();
-                Tweet newTweet = new Tweet("Temp", "temp", "5 sec", content, false);
+                misiulia.alex.dev.andrtwitter.Tweet newTweet = new misiulia.alex.dev.andrtwitter.Tweet("Temp", "temp", "5 sec", content, false);
                 mTweetAdapter.addTweet(newTweet);
             }
         });
@@ -110,7 +109,7 @@ public class UserInfoActivity extends BaseActivity {
             }
         });
         AlertDialog b = dialogBuilder.create();
-        b.show();
+        b.show();*/
     }
 
     private void displayProfile(User user) {
@@ -126,6 +125,7 @@ public class UserInfoActivity extends BaseActivity {
 
     static class ReadProfileTask extends AsyncTask<Long, Void, User> {
         private UserInfoActivity mUserInfoActivity;
+        private Collection<Tweet> mTweets;
 
         public ReadProfileTask(UserInfoActivity userInfoActivity) {
             mUserInfoActivity = userInfoActivity;
@@ -133,16 +133,24 @@ public class UserInfoActivity extends BaseActivity {
 
         @Override
         protected User doInBackground(Long... ids) {
-            return mUserInfoActivity.mHttpClient.readProfile(ids[0]);
+            Long id = ids[0];
+            mTweets = mUserInfoActivity.mHttpClient.readTweets(id);
+            return mUserInfoActivity.mHttpClient.readProfile(id);
         }
 
         @Override
         protected void onPostExecute(User user) {
             super.onPostExecute(user);
             mUserInfoActivity.displayProfile(user);
+            mUserInfoActivity.displayTweets(mTweets);
         }
 
     }
+
+    private void displayTweets(Collection<Tweet> tweets) {
+        mTweetAdapter.setItems(tweets);
+    }
+
     private void requestUserInfo(long userId) {
         new ReadProfileTask(this).execute(userId);
     }

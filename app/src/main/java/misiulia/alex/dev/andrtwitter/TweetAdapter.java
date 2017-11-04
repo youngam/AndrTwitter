@@ -3,6 +3,7 @@ package misiulia.alex.dev.andrtwitter;
 import static android.view.LayoutInflater.from;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import misiulia.alex.dev.andrtwitter.entity.Tweet;
 
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHolder> {
     private List<Tweet> mTweetList = new ArrayList<>();
@@ -25,7 +28,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
         holder.bind(mTweetList.get(position));
     }
 
-    public void setItems(List<Tweet> tweets) {
+    public void setItems(Collection<Tweet> tweets) {
         mTweetList.addAll(tweets);
         notifyDataSetChanged();
     }
@@ -60,12 +63,12 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
         }
 
         public void bind(Tweet tweet) {
-            mNameTextView.setText(tweet.name);
-            mNickTextView.setText(tweet.nick + " "  + tweet.dateString);
-            mContentTextView.setText(tweet.content);
-            mCommentsTextView.setText(String.valueOf(tweet.comments));
-            mRetweetsTextView.setText(String.valueOf(tweet.retweets));
-            mLikesTextView.setText(String.valueOf(tweet.likes));
+            mNameTextView.setText(tweet.getUser().getName());
+            mNickTextView.setText(tweet.getCreatedAt());
+            mContentTextView.setText(tweet.getText());
+            mCommentsTextView.setText(String.valueOf(tweet.getReplyCount()));
+            mRetweetsTextView.setText(String.valueOf(tweet.getRetweetCount()));
+            mLikesTextView.setText(String.valueOf(tweet.getFavouriteCount()));
         }
     }
 }
