@@ -5,8 +5,7 @@
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">YZHL3AP029AO2ycdb0kTJ9Iz8Lb0v4cFsfKZRKdQaD2Cnckgtj</string>
     <string name="user_name">AndroidLearning</string>
     <string name="user_nick">\u0040it_pro_learning</string>
-    <string name="user_info">Практические курсы по изучению программирования под ОС андроид. Базовый курс предназначен для новичков.
-                                Основной целью является сделать обучение прикладным и эффективным.
+    <string name="user_info">Description
     </string>
     <string name="user_location">Минск, РБ</string>
     <string name="user_link">android-learning.com/</string>

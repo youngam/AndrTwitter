@@ -17,26 +17,29 @@
                           android:padding="10dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile_image"
+                    android:id="@+id/profile_image_view"
                     style="@style/BigPhoto"
                     android:src="@drawable/user_profile"/>
 
                 <TextView
+                    android:id="@+id/user_name_text_view"
                     style="@style/WrapContent"
                     android:layout_marginTop="@dimen/text_margin"
-                    android:text="@string/user_name"
+                    android:hint="@string/user_name"
                     android:textAppearance="@style/TextRegular.Primary.Big"/>
 
                 <TextView
+                    android:id="@+id/user_nick_text_view"
                     style="@style/WrapContent"
                     android:layout_marginTop="@dimen/text_margin"
-                    android:text="@string/user_nick"
+                    android:hint="@string/user_nick"
                     android:textAppearance="@style/TextRegular.Secondary"/>
 
                 <TextView
+                    android:id="@+id/description_text_view"
                     style="@style/WrapContent"
                     android:layout_marginTop="@dimen/text_margin"
-                    android:text="@string/user_info"
+                    android:hint="@string/user_info"
                     android:textAppearance="@style/TextRegular.Primary"/>
 
                 <RelativeLayout
@@ -51,7 +54,7 @@
                         style="@style/TextIcon"
                         android:layout_alignParentStart="true"
                         android:layout_marginBottom="@dimen/text_margin"
-                        android:text="@string/fa_map_marker"
+                        android:hint="@string/fa_map_marker"
                     />
 
                     <TextView
@@ -59,7 +62,7 @@
                         style="@style/WrapContent"
                         android:layout_alignBaseline="@id/location_icon_text_view"
                         android:layout_toEndOf="@+id/location_icon_text_view"
-                        android:text="@string/user_location"
+                        android:hint="@string/user_location"
                         android:textAppearance="@style/TextRegular.Secondary"
                     />
 
@@ -80,7 +83,9 @@
                         android:layout_alignBaseline="@id/link_icon_text_view"
                         android:layout_toEndOf="@id/link_icon_text_view"
                         android:autoLink="web"
-                        android:text="@string/user_link"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:hint="@string/user_link"
                         android:textAppearance="@style/TextRegular.Secondary"
                     />
 
@@ -91,7 +96,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignStart="@id/link_icon_text_view"
                         android:layout_below="@id/location_icon_text_view"
-                        android:text="4"
+                        android:hint="4"
                         android:textAppearance="@style/TextRegular.Primary"
                         android:textStyle="bold"
                     />
@@ -102,16 +107,16 @@
                         android:layout_below="@id/location_icon_text_view"
                         android:layout_marginStart="@dimen/text_margin"
                         android:layout_toEndOf="@id/following_count_text_view"
-                        android:text="@string/following_hint"
+                        android:hint="@string/following_hint"
                         android:textAppearance="@style/TextRegular.Secondary"
                     />
 
                     <TextView
                         android:id="@+id/followers_count_text_view"
                         style="@style/WrapContent"
-                        android:layout_alignStart="@id/link_icon_text_view"
+                        android:layout_toEndOf="@id/following_hint_text_view"
+                        android:layout_marginStart="30dp"
                         android:layout_below="@id/link_icon_text_view"
-                        android:text="119K"
                         android:textAppearance="@style/TextRegular.Primary"
                         android:textStyle="bold"
                     />
@@ -122,7 +127,7 @@
                         android:layout_below="@id/link_icon_text_view"
                         android:layout_marginStart="@dimen/text_margin"
                         android:layout_toEndOf="@id/followers_count_text_view"
-                        android:text="@string/followers_hint"
+                        android:hint="@string/followers_hint"
                         android:textAppearance="@style/TextRegular.Secondary"
                     />
 

@@ -34,6 +34,9 @@ dependencies {
 
     compile 'de.hdodenhof:circleimageview:2.1.0'
 
+    // picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
     // library for fonts
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
 
