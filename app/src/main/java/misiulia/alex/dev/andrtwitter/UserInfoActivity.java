@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import misiulia.alex.dev.andrtwitter.entity.Profile;
+import misiulia.alex.dev.andrtwitter.entity.User;
 import misiulia.alex.dev.andrtwitter.network.HttpClient;
 
 public class UserInfoActivity extends BaseActivity {
@@ -113,18 +113,18 @@ public class UserInfoActivity extends BaseActivity {
         b.show();
     }
 
-    private void displayProfile(Profile profile) {
-        Picasso.with(this).load(profile.getProfileImageUrl()).into(mProfileImageView);
-        mNameTextView.setText(profile.getScreenName());
-        mNickTextView.setText(profile.getName());
-        mLocationTextView.setText(profile.getLocation());
-        mUrlTextView.setText(profile.getUrl());
-        mDescriptionTextView.setText(profile.getDescription());
-        mFollowersTextView.setText(String.valueOf(profile.getFollowersCount()));
-        mFollowingTextView.setText(String.valueOf(profile.getFavouritesCount()));
+    private void displayProfile(User user) {
+        Picasso.with(this).load(user.getProfileImageUrl()).into(mProfileImageView);
+        mNameTextView.setText(user.getScreenName());
+        mNickTextView.setText(user.getName());
+        mLocationTextView.setText(user.getLocation());
+        mUrlTextView.setText(user.getUrl());
+        mDescriptionTextView.setText(user.getDescription());
+        mFollowersTextView.setText(String.valueOf(user.getFollowersCount()));
+        mFollowingTextView.setText(String.valueOf(user.getFavouritesCount()));
     }
 
-    static class ReadProfileTask extends AsyncTask<Long, Void, Profile> {
+    static class ReadProfileTask extends AsyncTask<Long, Void, User> {
         private UserInfoActivity mUserInfoActivity;
 
         public ReadProfileTask(UserInfoActivity userInfoActivity) {
@@ -132,14 +132,14 @@ public class UserInfoActivity extends BaseActivity {
         }
 
         @Override
-        protected Profile doInBackground(Long... ids) {
+        protected User doInBackground(Long... ids) {
             return mUserInfoActivity.mHttpClient.readProfile(ids[0]);
         }
 
         @Override
-        protected void onPostExecute(Profile profile) {
-            super.onPostExecute(profile);
-            mUserInfoActivity.displayProfile(profile);
+        protected void onPostExecute(User user) {
+            super.onPostExecute(user);
+            mUserInfoActivity.displayProfile(user);
         }
 
     }

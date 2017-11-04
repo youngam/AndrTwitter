@@ -3,7 +3,7 @@ package misiulia.alex.dev.andrtwitter.entity;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Profile {
+public class User {
 
     @SerializedName("id")
     private Long id;
@@ -270,109 +270,109 @@ public class Profile {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Profile profile = (Profile) o;
+        User user = (User) o;
 
-        if (!id.equals(profile.id)) return false;
-        if (name != null ? !name.equals(profile.name) : profile.name != null) return false;
-        if (screenName != null ? !screenName.equals(profile.screenName) : profile.screenName != null) {
+        if (!id.equals(user.id)) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
+        if (screenName != null ? !screenName.equals(user.screenName) : user.screenName != null) {
             return false;
         }
-        if (location != null ? !location.equals(profile.location) : profile.location != null) {
+        if (location != null ? !location.equals(user.location) : user.location != null) {
             return false;
         }
-        if (profileLocation != null ? !profileLocation.equals(profile.profileLocation) : profile.profileLocation != null) {
+        if (profileLocation != null ? !profileLocation.equals(user.profileLocation) : user.profileLocation != null) {
             return false;
         }
-        if (description != null ? !description.equals(profile.description) : profile.description != null) {
+        if (description != null ? !description.equals(user.description) : user.description != null) {
             return false;
         }
-        if (url != null ? !url.equals(profile.url) : profile.url != null) return false;
-        if (_protected != null ? !_protected.equals(profile._protected) : profile._protected != null) {
+        if (url != null ? !url.equals(user.url) : user.url != null) return false;
+        if (_protected != null ? !_protected.equals(user._protected) : user._protected != null) {
             return false;
         }
-        if (followersCount != null ? !followersCount.equals(profile.followersCount) : profile.followersCount != null) {
+        if (followersCount != null ? !followersCount.equals(user.followersCount) : user.followersCount != null) {
             return false;
         }
-        if (friendsCount != null ? !friendsCount.equals(profile.friendsCount) : profile.friendsCount != null) {
+        if (friendsCount != null ? !friendsCount.equals(user.friendsCount) : user.friendsCount != null) {
             return false;
         }
-        if (listedCount != null ? !listedCount.equals(profile.listedCount) : profile.listedCount != null) {
+        if (listedCount != null ? !listedCount.equals(user.listedCount) : user.listedCount != null) {
             return false;
         }
-        if (createdAt != null ? !createdAt.equals(profile.createdAt) : profile.createdAt != null) {
+        if (createdAt != null ? !createdAt.equals(user.createdAt) : user.createdAt != null) {
             return false;
         }
-        if (favouritesCount != null ? !favouritesCount.equals(profile.favouritesCount) : profile.favouritesCount != null) {
+        if (favouritesCount != null ? !favouritesCount.equals(user.favouritesCount) : user.favouritesCount != null) {
             return false;
         }
-        if (utcOffset != null ? !utcOffset.equals(profile.utcOffset) : profile.utcOffset != null) {
+        if (utcOffset != null ? !utcOffset.equals(user.utcOffset) : user.utcOffset != null) {
             return false;
         }
-        if (timeZone != null ? !timeZone.equals(profile.timeZone) : profile.timeZone != null) {
+        if (timeZone != null ? !timeZone.equals(user.timeZone) : user.timeZone != null) {
             return false;
         }
-        if (geoEnabled != null ? !geoEnabled.equals(profile.geoEnabled) : profile.geoEnabled != null) {
+        if (geoEnabled != null ? !geoEnabled.equals(user.geoEnabled) : user.geoEnabled != null) {
             return false;
         }
-        if (verified != null ? !verified.equals(profile.verified) : profile.verified != null) {
+        if (verified != null ? !verified.equals(user.verified) : user.verified != null) {
             return false;
         }
-        if (statusesCount != null ? !statusesCount.equals(profile.statusesCount) : profile.statusesCount != null) {
+        if (statusesCount != null ? !statusesCount.equals(user.statusesCount) : user.statusesCount != null) {
             return false;
         }
-        if (lang != null ? !lang.equals(profile.lang) : profile.lang != null) return false;
-        if (contributorsEnabled != null ? !contributorsEnabled.equals(profile.contributorsEnabled) : profile.contributorsEnabled != null) {
+        if (lang != null ? !lang.equals(user.lang) : user.lang != null) return false;
+        if (contributorsEnabled != null ? !contributorsEnabled.equals(user.contributorsEnabled) : user.contributorsEnabled != null) {
             return false;
         }
-        if (isTranslator != null ? !isTranslator.equals(profile.isTranslator) : profile.isTranslator != null) {
+        if (isTranslator != null ? !isTranslator.equals(user.isTranslator) : user.isTranslator != null) {
             return false;
         }
-        if (isTranslationEnabled != null ? !isTranslationEnabled.equals(profile.isTranslationEnabled) : profile.isTranslationEnabled != null) {
+        if (isTranslationEnabled != null ? !isTranslationEnabled.equals(user.isTranslationEnabled) : user.isTranslationEnabled != null) {
             return false;
         }
-        if (profileBackgroundColor != null ? !profileBackgroundColor.equals(profile.profileBackgroundColor) : profile.profileBackgroundColor != null) {
+        if (profileBackgroundColor != null ? !profileBackgroundColor.equals(user.profileBackgroundColor) : user.profileBackgroundColor != null) {
             return false;
         }
-        if (profileBackgroundImageUrl != null ? !profileBackgroundImageUrl.equals(profile.profileBackgroundImageUrl) : profile.profileBackgroundImageUrl != null) {
+        if (profileBackgroundImageUrl != null ? !profileBackgroundImageUrl.equals(user.profileBackgroundImageUrl) : user.profileBackgroundImageUrl != null) {
             return false;
         }
-        if (profileBackgroundImageUrlHttps != null ? !profileBackgroundImageUrlHttps.equals(profile.profileBackgroundImageUrlHttps) : profile.profileBackgroundImageUrlHttps != null) {
+        if (profileBackgroundImageUrlHttps != null ? !profileBackgroundImageUrlHttps.equals(user.profileBackgroundImageUrlHttps) : user.profileBackgroundImageUrlHttps != null) {
             return false;
         }
-        if (profileBackgroundTile != null ? !profileBackgroundTile.equals(profile.profileBackgroundTile) : profile.profileBackgroundTile != null) {
+        if (profileBackgroundTile != null ? !profileBackgroundTile.equals(user.profileBackgroundTile) : user.profileBackgroundTile != null) {
             return false;
         }
-        if (profileImageUrl != null ? !profileImageUrl.equals(profile.profileImageUrl) : profile.profileImageUrl != null) {
+        if (profileImageUrl != null ? !profileImageUrl.equals(user.profileImageUrl) : user.profileImageUrl != null) {
             return false;
         }
-        if (profileImageUrlHttps != null ? !profileImageUrlHttps.equals(profile.profileImageUrlHttps) : profile.profileImageUrlHttps != null) {
+        if (profileImageUrlHttps != null ? !profileImageUrlHttps.equals(user.profileImageUrlHttps) : user.profileImageUrlHttps != null) {
             return false;
         }
-        if (profileBannerUrl != null ? !profileBannerUrl.equals(profile.profileBannerUrl) : profile.profileBannerUrl != null) {
+        if (profileBannerUrl != null ? !profileBannerUrl.equals(user.profileBannerUrl) : user.profileBannerUrl != null) {
             return false;
         }
-        if (profileLinkColor != null ? !profileLinkColor.equals(profile.profileLinkColor) : profile.profileLinkColor != null) {
+        if (profileLinkColor != null ? !profileLinkColor.equals(user.profileLinkColor) : user.profileLinkColor != null) {
             return false;
         }
-        if (profileSidebarBorderColor != null ? !profileSidebarBorderColor.equals(profile.profileSidebarBorderColor) : profile.profileSidebarBorderColor != null) {
+        if (profileSidebarBorderColor != null ? !profileSidebarBorderColor.equals(user.profileSidebarBorderColor) : user.profileSidebarBorderColor != null) {
             return false;
         }
-        if (profileSidebarFillColor != null ? !profileSidebarFillColor.equals(profile.profileSidebarFillColor) : profile.profileSidebarFillColor != null) {
+        if (profileSidebarFillColor != null ? !profileSidebarFillColor.equals(user.profileSidebarFillColor) : user.profileSidebarFillColor != null) {
             return false;
         }
-        if (profileTextColor != null ? !profileTextColor.equals(profile.profileTextColor) : profile.profileTextColor != null) {
+        if (profileTextColor != null ? !profileTextColor.equals(user.profileTextColor) : user.profileTextColor != null) {
             return false;
         }
-        if (profileUseBackgroundImage != null ? !profileUseBackgroundImage.equals(profile.profileUseBackgroundImage) : profile.profileUseBackgroundImage != null) {
+        if (profileUseBackgroundImage != null ? !profileUseBackgroundImage.equals(user.profileUseBackgroundImage) : user.profileUseBackgroundImage != null) {
             return false;
         }
-        if (hasExtendedProfile != null ? !hasExtendedProfile.equals(profile.hasExtendedProfile) : profile.hasExtendedProfile != null) {
+        if (hasExtendedProfile != null ? !hasExtendedProfile.equals(user.hasExtendedProfile) : user.hasExtendedProfile != null) {
             return false;
         }
-        if (defaultProfile != null ? !defaultProfile.equals(profile.defaultProfile) : profile.defaultProfile != null) {
+        if (defaultProfile != null ? !defaultProfile.equals(user.defaultProfile) : user.defaultProfile != null) {
             return false;
         }
-        return defaultProfileImage != null ? defaultProfileImage.equals(profile.defaultProfileImage) : profile.defaultProfileImage == null;
+        return defaultProfileImage != null ? defaultProfileImage.equals(user.defaultProfileImage) : user.defaultProfileImage == null;
     }
 
     @Override

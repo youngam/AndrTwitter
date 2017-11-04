@@ -19,7 +19,7 @@ import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.internal.oauth.OAuth1aHeaders;
 
-import misiulia.alex.dev.andrtwitter.entity.Profile;
+import misiulia.alex.dev.andrtwitter.entity.User;
 import misiulia.alex.dev.andrtwitter.oauth.AuthPreference;
 
 public class HttpClient {
@@ -28,7 +28,7 @@ public class HttpClient {
 
     private Gson mGson = new Gson();
 
-    public Profile readProfile(long userId) {
+    public User readProfile(long userId) {
         String methodUrl = format(Locale.ROOT, "%s/%s=%d", API_URL, "users/show.json?user_id", userId);
         String response = null;
         try {
@@ -49,9 +49,9 @@ public class HttpClient {
             throw new RuntimeException(e);
         }
 
-        Profile profile = mGson.fromJson(response, Profile.class);
+        User user = mGson.fromJson(response, User.class);
         Log.d("LmTest", "response : " + response);
-        return profile;
+        return user;
     }
 
     private static String convertStreamToString(InputStream is) {
