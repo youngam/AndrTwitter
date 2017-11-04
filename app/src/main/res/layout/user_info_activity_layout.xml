@@ -70,6 +70,7 @@
                     <TextView
                         android:id="@+id/link_icon_text_view"
                         style="@style/TextIcon"
+                        android:visibility="gone"
                         android:layout_marginBottom="@dimen/text_margin"
                         android:layout_marginLeft="20dp"
                         android:layout_marginStart="20dp"
@@ -77,14 +78,17 @@
                         android:text="@string/fa_link"
                     />
 
+                    <!--FIXME LM_LM invisible now because entity structure is ugly.
+                        change it in advanced module-->
                     <TextView
-                        android:id="@+id/link_text_view"
+                        android:id="@+id/url_text_view"
                         style="@style/WrapContent"
                         android:layout_alignBaseline="@id/link_icon_text_view"
                         android:layout_toEndOf="@id/link_icon_text_view"
                         android:autoLink="web"
                         android:maxLines="1"
                         android:ellipsize="end"
+                        android:visibility="gone"
                         android:hint="@string/user_link"
                         android:textAppearance="@style/TextRegular.Secondary"
                     />
@@ -116,7 +120,7 @@
                         style="@style/WrapContent"
                         android:layout_toEndOf="@id/following_hint_text_view"
                         android:layout_marginStart="30dp"
-                        android:layout_below="@id/link_icon_text_view"
+                        android:layout_below="@id/location_icon_text_view"
                         android:textAppearance="@style/TextRegular.Primary"
                         android:textStyle="bold"
                     />
@@ -124,7 +128,7 @@
                     <TextView
                         android:id="@+id/followers_hint_text_view"
                         style="@style/WrapContent"
-                        android:layout_below="@id/link_icon_text_view"
+                        android:layout_below="@id/location_icon_text_view"
                         android:layout_marginStart="@dimen/text_margin"
                         android:layout_toEndOf="@id/followers_count_text_view"
                         android:hint="@string/followers_hint"

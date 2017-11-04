@@ -30,7 +30,7 @@ public class UserInfoActivity extends BaseActivity {
     private TextView mNickTextView;
     private TextView mDescriptionTextView;
     private TextView mLocationTextView;
-    private TextView mSiteTextView;
+    private TextView mUrlTextView;
     private TextView mFollowingTextView;
     private TextView mFollowersTextView;
 
@@ -65,7 +65,7 @@ public class UserInfoActivity extends BaseActivity {
         mNickTextView = findViewById(R.id.user_nick_text_view);
         mDescriptionTextView = findViewById(R.id.description_text_view);
         mLocationTextView = findViewById(R.id.location_text_view);
-        mSiteTextView = findViewById(R.id.link_text_view);
+        mUrlTextView = findViewById(R.id.url_text_view);
         mFollowersTextView = findViewById(R.id.followers_count_text_view);
         mFollowingTextView = findViewById(R.id.following_count_text_view);
 
@@ -118,13 +118,10 @@ public class UserInfoActivity extends BaseActivity {
         mNameTextView.setText(profile.getScreenName());
         mNickTextView.setText(profile.getName());
         mLocationTextView.setText(profile.getLocation());
-        // TODO LM_LM site
-
+        mUrlTextView.setText(profile.getUrl());
         mDescriptionTextView.setText(profile.getDescription());
         mFollowersTextView.setText(String.valueOf(profile.getFollowersCount()));
         mFollowingTextView.setText(String.valueOf(profile.getFavouritesCount()));
-
-
     }
 
     static class ReadProfileTask extends AsyncTask<Long, Void, Profile> {
