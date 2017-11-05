@@ -37,9 +37,6 @@ dependencies {
     // picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
 
-    // library for fonts
-    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
-
     compile "com.android.support:recyclerview-v7:$supportVersion"
 
     testCompile 'junit:junit:4.12'
