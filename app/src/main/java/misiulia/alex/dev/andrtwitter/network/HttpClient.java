@@ -7,9 +7,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -29,13 +31,14 @@ import misiulia.alex.dev.andrtwitter.entity.Tweet;
 import misiulia.alex.dev.andrtwitter.entity.User;
 import misiulia.alex.dev.andrtwitter.oauth.AuthPreference;
 
+// TODO LM_ALL do it singleton
 public class HttpClient {
     private static final String API_URL = "https://api.twitter.com/1.1";
     private static final String GET = "GET";
 
     private Gson mGson = new Gson();
 
-    public User readProfile(long userId) {
+    public User readUserInfo(long userId) {
         String requestUrl = format(Locale.ROOT, "%s/%s=%d", API_URL, "users/show.json?user_id", userId);
         String response = getResponseString(requestUrl);
 
@@ -52,6 +55,23 @@ public class HttpClient {
         Log.d("LmTest", "response : " + response);
         List<Tweet> tweets = mGson.fromJson(response, listType);
         return tweets;
+    }
+
+    public Collection<User> readUsers(String query) {
+        String encodedQuery;
+
+        try {
+            encodedQuery = URLEncoder.encode(query, "UTF-8").replace("+", "%20");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("Can't encode query: " + query, e);
+        }
+        String requestUrl = format(Locale.ROOT, "%s/%s=%s", API_URL, "users/search.json?q", encodedQuery);
+        String response = getResponseString(requestUrl);
+
+        Type listType = new TypeToken<ArrayList<User>>(){}.getType();
+        Log.d("LmTest", "response : " + response);
+        List<User> users = mGson.fromJson(response, listType);
+        return users;
     }
 
     @NonNull

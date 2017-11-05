@@ -18,7 +18,7 @@
         style="@style/WrapContent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="@string/user_name"
+        android:text="@string/user_name_hint"
         android:textAppearance="@style/TextRegular.Primary"
         android:textStyle="bold"
         tools:layout_editor_absoluteY="18dp" tools:layout_editor_absoluteX="71dp"/>
@@ -28,7 +28,7 @@
         style="@style/WrapContent"
         android:layout_marginStart="@dimen/text_margin"
         android:layout_toEndOf="@+id/author_name_text_view"
-        android:text="@string/user_nick"
+        android:text="@string/user_nick_hint"
         android:textAppearance="@style/TextRegular.Secondary"
         tools:layout_editor_absoluteY="18dp" tools:layout_editor_absoluteX="171dp"/>
 

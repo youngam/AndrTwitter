@@ -22,6 +22,7 @@
         </activity>
 
         <activity android:name=".UserInfoActivity"/>
+        <activity android:name=".searchusers.SearchUsersActivity"/>
     </application>
 
 </manifest>
