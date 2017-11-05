@@ -15,7 +15,7 @@
         <TextView
             android:id="@+id/author_name_text_view"
             style="@style/WrapContent"
-            android:text="@string/user_name"
+            android:text="@string/user_name_hint"
             android:textStyle="bold"
             android:textAppearance="@style/TextRegular.Primary"/>
 
@@ -24,7 +24,7 @@
             style="@style/WrapContent"
             android:layout_toEndOf="@+id/author_name_text_view"
             android:layout_marginStart="@dimen/text_margin"
-            android:text="@string/user_nick"
+            android:text="@string/user_nick_hint"
             android:textAppearance="@style/TextRegular.Secondary"/>
 
         <TextView

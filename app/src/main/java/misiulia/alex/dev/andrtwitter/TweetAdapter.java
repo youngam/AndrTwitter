@@ -76,7 +76,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
             mRetweetsTextView.setText(String.valueOf(tweet.getRetweetCount()));
             mLikesTextView.setText(String.valueOf(tweet.getFavouriteCount()));
 
-            Picasso.with(itemView.getContext()).load(tweet.getUser().getProfileImageUrl()).into(mUserImageView);
+            Picasso.with(itemView.getContext()).load(tweet.getUser().getNormalImageUrl()).into(mUserImageView);
         }
     }
 }

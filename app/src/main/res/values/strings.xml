@@ -3,8 +3,8 @@
     <string name="app_name">AndrTwitter</string>
     <string name="com.twitter.sdk.android.CONSUMER_KEY">yHP7WOGyapkv7hlAsjO6zOURt</string>
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">YZHL3AP029AO2ycdb0kTJ9Iz8Lb0v4cFsfKZRKdQaD2Cnckgtj</string>
-    <string name="user_name">AndroidLearning</string>
-    <string name="user_nick">AlexMisiulia</string>
+    <string name="user_name_hint">User Name</string>
+    <string name="user_nick_hint">User Nickname</string>
     <string name="creation_date_hint">26 Oct</string>
     <string name="user_info">Description
     </string>
@@ -20,4 +20,7 @@
     <string name="fa_heart_o">\uf08a</string>
     <string name="fa_link">\uf0c1</string>
     <string name="fa_retweet">\uf079</string>
+    <string name="search_hint">search</string>
+    <string name="search_query_hint">Enter user name</string>
+    <string name="search">search</string>
 </resources>

@@ -2,6 +2,7 @@ package misiulia.alex.dev.andrtwitter;
 
 import java.util.Collection;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,9 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +24,7 @@ import com.squareup.picasso.Picasso;
 import misiulia.alex.dev.andrtwitter.entity.Tweet;
 import misiulia.alex.dev.andrtwitter.entity.User;
 import misiulia.alex.dev.andrtwitter.network.HttpClient;
+import misiulia.alex.dev.andrtwitter.searchusers.SearchUsersActivity;
 
 public class UserInfoActivity extends BaseActivity {
     public static String USER_ID = "UserId";
@@ -32,6 +37,7 @@ public class UserInfoActivity extends BaseActivity {
     private TextView mUrlTextView;
     private TextView mFollowingTextView;
     private TextView mFollowersTextView;
+    private Toolbar mToolbar;
 
 
     private RecyclerView mRecyclerView;
@@ -58,7 +64,26 @@ public class UserInfoActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.user_info_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_search) {
+            startActivity(new Intent(this, SearchUsersActivity.class));
+        } else {
+            throw new IllegalArgumentException("Unknown item " + item.getItemId());
+        }
+        return true;
+    }
+
     private void initView() {
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
         mProfileImageView = findViewById(R.id.profile_image_view);
         mNameTextView = findViewById(R.id.user_name_text_view);
         mNickTextView = findViewById(R.id.user_nick_text_view);
@@ -113,7 +138,9 @@ public class UserInfoActivity extends BaseActivity {
     }
 
     private void displayProfile(User user) {
-        Picasso.with(this).load(user.getProfileImageUrl()).into(mProfileImageView);
+        mToolbar.setTitle(user.getName());
+
+        Picasso.with(this).load(user.getNormalImageUrl()).into(mProfileImageView);
         mNameTextView.setText(user.getName());
         mNickTextView.setText(user.getNickNameFormatted());
         mLocationTextView.setText(user.getLocation());
@@ -135,7 +162,7 @@ public class UserInfoActivity extends BaseActivity {
         protected User doInBackground(Long... ids) {
             Long id = ids[0];
             mTweets = mUserInfoActivity.mHttpClient.readTweets(id);
-            return mUserInfoActivity.mHttpClient.readProfile(id);
+            return mUserInfoActivity.mHttpClient.readUserInfo(id);
         }
 
         @Override

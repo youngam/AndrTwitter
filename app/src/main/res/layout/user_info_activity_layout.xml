@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchParent"
+>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:background="?attr/colorPrimary"
+        android:layout_height="?attr/actionBarSize"/>
+
+<android.support.design.widget.CoordinatorLayout
+    android:layout_below="@id/toolbar"
     style="@style/MatchParent">
 
     <android.support.v4.widget.NestedScrollView style="@style/MatchParent">
@@ -25,14 +37,14 @@
                     android:id="@+id/user_name_text_view"
                     style="@style/WrapContent"
                     android:layout_marginTop="@dimen/text_margin"
-                    android:hint="@string/user_name"
+                    android:hint="@string/user_name_hint"
                     android:textAppearance="@style/TextRegular.Primary.Big"/>
 
                 <TextView
                     android:id="@+id/user_nick_text_view"
                     style="@style/WrapContent"
                     android:layout_marginTop="@dimen/text_margin"
-                    android:hint="@string/user_nick"
+                    android:hint="@string/user_nick_hint"
                     android:textAppearance="@style/TextRegular.Secondary"/>
 
                 <TextView
@@ -158,4 +170,6 @@
         style="@style/FabButton.Create"
         android:layout_gravity="bottom|end"/>
 </android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>
+
 
