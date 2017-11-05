@@ -140,7 +140,7 @@ public class UserInfoActivity extends BaseActivity {
     private void displayProfile(User user) {
         mToolbar.setTitle(user.getName());
 
-        Picasso.with(this).load(user.getNormalImageUrl()).into(mProfileImageView);
+        Picasso.with(this).load(user.getFullImageUrl()).into(mProfileImageView);
         mNameTextView.setText(user.getName());
         mNickTextView.setText(user.getNickNameFormatted());
         mLocationTextView.setText(user.getLocation());

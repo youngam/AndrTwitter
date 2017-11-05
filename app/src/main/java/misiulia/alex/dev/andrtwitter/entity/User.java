@@ -6,6 +6,10 @@ import com.google.gson.annotations.SerializedName;
 public class User {
     public static final String USER = "user";
 
+    private final String NORMAL_IMAGE_PREF = "_normal";
+    private final String BIG_IMAGE_PREF = "_bigger";
+    private final String FULL_IMAGE_PREF = "";
+
     @SerializedName("id")
     private Long id;
 
@@ -226,8 +230,16 @@ public class User {
         return profileBackgroundTile;
     }
 
-    public String getProfileImageUrl() {
+    public String getNormalImageUrl() {
         return profileImageUrl;
+    }
+
+    public String getBigImageUrl() {
+        return profileImageUrl.replace(NORMAL_IMAGE_PREF, BIG_IMAGE_PREF);
+    }
+
+    public String getFullImageUrl() {
+        return profileImageUrl.replace(NORMAL_IMAGE_PREF, FULL_IMAGE_PREF);
     }
 
     public String getProfileImageUrlHttps() {
