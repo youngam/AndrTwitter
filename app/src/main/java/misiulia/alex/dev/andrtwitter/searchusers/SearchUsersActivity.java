@@ -12,7 +12,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +40,8 @@ public class SearchUsersActivity extends BaseActivity {
     private void initView() {
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
+        requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         mQueryEditText = mToolbar.findViewById(R.id.query_edit_text);
@@ -66,17 +67,6 @@ public class SearchUsersActivity extends BaseActivity {
         mUsersRecyclerView.setAdapter(mUserAdapter);
 
         mHttpClient = new HttpClient();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-        }
-
-        return(super.onOptionsItemSelected(item));
     }
 
     private void readUsers(final String query) {
