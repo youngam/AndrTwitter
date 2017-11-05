@@ -1,5 +1,6 @@
 package misiulia.alex.dev.andrtwitter.searchusers;
 
+import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 import static java.util.Objects.requireNonNull;
 import static misiulia.alex.dev.andrtwitter.UserInfoActivity.USER_ID;
 
@@ -21,6 +22,7 @@ import misiulia.alex.dev.andrtwitter.R;
 import misiulia.alex.dev.andrtwitter.UserInfoActivity;
 import misiulia.alex.dev.andrtwitter.entity.User;
 import misiulia.alex.dev.andrtwitter.network.HttpClient;
+import misiulia.alex.dev.andrtwitter.utils.ViewUtils;
 
 public class SearchUsersActivity extends BaseActivity {
     private Toolbar mToolbar;
@@ -40,8 +42,6 @@ public class SearchUsersActivity extends BaseActivity {
     private void initView() {
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
-        requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         mQueryEditText = mToolbar.findViewById(R.id.query_edit_text);
@@ -65,6 +65,8 @@ public class SearchUsersActivity extends BaseActivity {
             }
         });
         mUsersRecyclerView.setAdapter(mUserAdapter);
+
+        mUsersRecyclerView.addItemDecoration(ViewUtils.getRvItemDecoration(this, VERTICAL));
 
         mHttpClient = new HttpClient();
     }

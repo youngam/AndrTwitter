@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -25,6 +24,7 @@ import misiulia.alex.dev.andrtwitter.entity.Tweet;
 import misiulia.alex.dev.andrtwitter.entity.User;
 import misiulia.alex.dev.andrtwitter.network.HttpClient;
 import misiulia.alex.dev.andrtwitter.searchusers.SearchUsersActivity;
+import misiulia.alex.dev.andrtwitter.utils.ViewUtils;
 
 public class UserInfoActivity extends BaseActivity {
     public static String USER_ID = "UserId";
@@ -105,7 +105,7 @@ public class UserInfoActivity extends BaseActivity {
         // for smooth scroll inside NestedScrollView
         ViewCompat.setNestedScrollingEnabled(mRecyclerView, false);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, RecyclerView.VERTICAL));
+        mRecyclerView.addItemDecoration(ViewUtils.getRvItemDecoration(this, RecyclerView.VERTICAL));
         mTweetAdapter = new TweetAdapter();
         mRecyclerView.setAdapter(mTweetAdapter);
 
