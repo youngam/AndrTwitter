@@ -114,8 +114,8 @@ public class UserInfoActivity extends BaseActivity {
 
     private void displayProfile(User user) {
         Picasso.with(this).load(user.getProfileImageUrl()).into(mProfileImageView);
-        mNameTextView.setText(user.getScreenName());
-        mNickTextView.setText(user.getName());
+        mNameTextView.setText(user.getName());
+        mNickTextView.setText(user.getNickNameFormatted());
         mLocationTextView.setText(user.getLocation());
         mUrlTextView.setText(user.getUrl());
         mDescriptionTextView.setText(user.getDescription());

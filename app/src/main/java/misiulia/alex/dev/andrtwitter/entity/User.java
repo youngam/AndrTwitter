@@ -130,6 +130,10 @@ public class User {
         return screenName;
     }
 
+    public String getNickNameFormatted() {
+        return "@" + screenName;
+    }
+
     public String getLocation() {
         return location;
     }
