@@ -13,6 +13,9 @@
     android:layout_below="@id/toolbar"
     style="@style/MatchParent">
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        style="@style/WrapContent">
     <android.support.v4.widget.NestedScrollView style="@style/MatchParent">
 
         <LinearLayout
@@ -160,6 +163,7 @@
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_tweet_fab"

@@ -109,10 +109,7 @@ public class SearchUsersActivity extends BaseActivity {
             @Override
             protected void onPostExecute(Collection<User> users) {
                 super.onPostExecute(users);
-                if(isSwipeRefresh) {
-                    mUserAdapter.clearItems();
-                    mSwipeRefreshLayout.setRefreshing(false);
-                }
+                if(isSwipeRefresh) mUserAdapter.clearItems();
 
                 showLoading(false);
                 mUserAdapter.setItems(users);

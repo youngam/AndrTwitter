@@ -2,12 +2,14 @@ package misiulia.alex.dev.andrtwitter;
 
 import java.util.Collection;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +31,7 @@ import misiulia.alex.dev.andrtwitter.utils.ViewUtils;
 public class UserInfoActivity extends BaseActivity {
     public static String USER_ID = "UserId";
 
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private ImageView mProfileImageView;
     private TextView mNameTextView;
     private TextView mNickTextView;
@@ -50,18 +53,19 @@ public class UserInfoActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_info_activity_layout);
-        initView();
-        mHttpClient = new HttpClient();
 
         Long userId = getIntent().getLongExtra(USER_ID, -1);
 
         if(userId  != -1) {
-            requestUserInfo(userId);
+            mHttpClient = new HttpClient();
+            initView(userId);
+            requestUserInfo(userId, false);
         }
         else {
             Toast.makeText(this, "User id isn't passed to screen", Toast.LENGTH_SHORT).show();
             finish();
         }
+
     }
 
     @Override
@@ -80,9 +84,17 @@ public class UserInfoActivity extends BaseActivity {
         return true;
     }
 
-    private void initView() {
+    private void initView(final long userId) {
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
+        mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                requestUserInfo(userId, true);
+            }
+        });
 
         mProfileImageView = findViewById(R.id.profile_image_view);
         mNameTextView = findViewById(R.id.user_name_text_view);
@@ -150,35 +162,42 @@ public class UserInfoActivity extends BaseActivity {
         mFollowingTextView.setText(String.valueOf(user.getFavouritesCount()));
     }
 
-    static class ReadProfileTask extends AsyncTask<Long, Void, User> {
-        private UserInfoActivity mUserInfoActivity;
-        private Collection<Tweet> mTweets;
-
-        public ReadProfileTask(UserInfoActivity userInfoActivity) {
-            mUserInfoActivity = userInfoActivity;
-        }
-
-        @Override
-        protected User doInBackground(Long... ids) {
-            Long id = ids[0];
-            mTweets = mUserInfoActivity.mHttpClient.readTweets(id);
-            return mUserInfoActivity.mHttpClient.readUserInfo(id);
-        }
-
-        @Override
-        protected void onPostExecute(User user) {
-            super.onPostExecute(user);
-            mUserInfoActivity.displayProfile(user);
-            mUserInfoActivity.displayTweets(mTweets);
-        }
-
-    }
-
     private void displayTweets(Collection<Tweet> tweets) {
         mTweetAdapter.setItems(tweets);
     }
 
-    private void requestUserInfo(long userId) {
-        new ReadProfileTask(this).execute(userId);
+
+    public void showLoading(boolean isLoading) {
+        mSwipeRefreshLayout.setRefreshing(isLoading);
+    }
+    // FIXME in extended course
+    @SuppressLint("StaticFieldLeak")
+    private void requestUserInfo(final long userId, final boolean isSwipeRefresh) {
+        new AsyncTask<Void, Void, User>() {
+            Collection<Tweet> tweets;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                showLoading(true);
+            }
+
+            @Override
+            protected User doInBackground (Void...voids){
+                tweets = mHttpClient.readTweets(userId);
+                return mHttpClient.readUserInfo(userId);
+            }
+
+            @Override
+            protected void onPostExecute (User user){
+                super.onPostExecute(user);
+
+                if(isSwipeRefresh) mTweetAdapter.clearItems();
+
+                showLoading(false);
+                displayProfile(user);
+                displayTweets(tweets);
+            }
+        }.execute();
     }
 }
