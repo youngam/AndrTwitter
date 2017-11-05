@@ -11,8 +11,8 @@
     <string name="user_location">Минск, РБ</string>
     <string name="user_link">android-learning.com/</string>
 
-    <string name="following_hint">Читает</string>
-    <string name="followers_hint">Читатели</string>
+    <string name="following_hint">Followers</string>
+    <string name="followers_hint">Following</string>
 
     <!--FA icons-->
     <string name="fa_map_marker">\uF041</string>
