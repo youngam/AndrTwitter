@@ -8,7 +8,7 @@
     <string name="creation_date_hint">26 Oct</string>
     <string name="user_info">Description
     </string>
-    <string name="user_location">Минск, РБ</string>
+    <string name="user_location">Location</string>
     <string name="user_link">android-learning.com/</string>
 
     <string name="following_hint">Followers</string>
