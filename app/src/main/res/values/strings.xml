@@ -4,7 +4,8 @@
     <string name="com.twitter.sdk.android.CONSUMER_KEY">yHP7WOGyapkv7hlAsjO6zOURt</string>
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">YZHL3AP029AO2ycdb0kTJ9Iz8Lb0v4cFsfKZRKdQaD2Cnckgtj</string>
     <string name="user_name">AndroidLearning</string>
-    <string name="user_nick">\u0040it_pro_learning</string>
+    <string name="user_nick">AlexMisiulia</string>
+    <string name="creation_date_hint">26 Oct</string>
     <string name="user_info">Description
     </string>
     <string name="user_location">Минск, РБ</string>

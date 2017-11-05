@@ -20,9 +20,6 @@ public class Tweet {
     @SerializedName("favorite_count")
     private Long favouriteCount;
 
-    @SerializedName("reply_count")
-    private Long replyCount;
-
     @SerializedName(USER)
     private User user;
 
@@ -44,10 +41,6 @@ public class Tweet {
 
     public Long getFavouriteCount() {
         return favouriteCount;
-    }
-
-    public Long getReplyCount() {
-        return replyCount;
     }
 
     public User getUser() {
@@ -72,9 +65,6 @@ public class Tweet {
         if (favouriteCount != null ? !favouriteCount.equals(tweet.favouriteCount) : tweet.favouriteCount != null) {
             return false;
         }
-        if (replyCount != null ? !replyCount.equals(tweet.replyCount) : tweet.replyCount != null) {
-            return false;
-        }
         return user != null ? user.equals(tweet.user) : tweet.user == null;
     }
 
@@ -85,7 +75,6 @@ public class Tweet {
         result = 31 * result + (text != null ? text.hashCode() : 0);
         result = 31 * result + (retweetCount != null ? retweetCount.hashCode() : 0);
         result = 31 * result + (favouriteCount != null ? favouriteCount.hashCode() : 0);
-        result = 31 * result + (replyCount != null ? replyCount.hashCode() : 0);
         result = 31 * result + (user != null ? user.hashCode() : 0);
         return result;
     }

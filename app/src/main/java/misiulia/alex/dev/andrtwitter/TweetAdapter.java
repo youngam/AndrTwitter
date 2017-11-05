@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import misiulia.alex.dev.andrtwitter.entity.Tweet;
 
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHolder> {
@@ -44,31 +46,34 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
     }
 
     class TweetViewHolder extends RecyclerView.ViewHolder {
-        private ImageView mImageView;
+        private ImageView mUserImageView;
         private TextView mNameTextView;
         private TextView mNickTextView;
+        private TextView mCreationDateTextView;
         private TextView mContentTextView;
-        private TextView mCommentsTextView;
         private TextView mRetweetsTextView;
         private TextView mLikesTextView;
 
         public TweetViewHolder(View itemView) {
             super(itemView);
+            mUserImageView = itemView.findViewById(R.id.profile_image_view);
             mNameTextView = itemView.findViewById(R.id.author_name_text_view);
             mNickTextView = itemView.findViewById(R.id.author_nick_text_view);
+            mCreationDateTextView = itemView.findViewById(R.id.creation_date_text_view);
             mContentTextView = itemView.findViewById(R.id.tweet_content_text_view);
-            mCommentsTextView = itemView.findViewById(R.id.comments_text_view);
             mRetweetsTextView = itemView.findViewById(R.id.retweets_text_view);
             mLikesTextView = itemView.findViewById(R.id.likes_text_view);
         }
 
         public void bind(Tweet tweet) {
             mNameTextView.setText(tweet.getUser().getName());
-            mNickTextView.setText(tweet.getCreatedAt());
+            mNickTextView.setText(tweet.getUser().getNickNameFormatted());
+            mCreationDateTextView.setText(tweet.getCreatedAt());
             mContentTextView.setText(tweet.getText());
-            mCommentsTextView.setText(String.valueOf(tweet.getReplyCount()));
             mRetweetsTextView.setText(String.valueOf(tweet.getRetweetCount()));
             mLikesTextView.setText(String.valueOf(tweet.getFavouriteCount()));
+
+            Picasso.with(itemView.getContext()).load(tweet.getUser().getProfileImageUrl()).into(mUserImageView);
         }
     }
 }

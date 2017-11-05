@@ -4,7 +4,7 @@
               android:padding="10dp"
               style="@style/FullWidth">
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/profile_image_view"
         style="@style/SmallPhoto"
         android:src="@drawable/user_profile"/>
 
@@ -28,6 +28,16 @@
             android:textAppearance="@style/TextRegular.Secondary"/>
 
         <TextView
+            android:id="@+id/creation_date_text_view"
+            style="@style/WrapContent"
+            android:layout_toEndOf="@+id/author_nick_text_view"
+            android:layout_marginStart="@dimen/text_margin"
+            android:text="@string/creation_date_hint"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAppearance="@style/TextRegular.Secondary"/>
+
+        <TextView
             android:id="@+id/tweet_content_text_view"
             android:layout_below="@id/author_name_text_view"
             style="@style/WrapContent"
@@ -40,25 +50,6 @@
             android:layout_below="@id/tweet_content_text_view"
             style="@style/FullWidth"
             android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/comments_container"
-                android:orientation="horizontal"
-                style="@style/QuarterWidth">
-
-                <TextView
-                    android:id="@+id/comments_icon_text_view"
-                    style="@style/TextIcon"
-                    android:text="@string/fa_comment_o"/>
-
-                <TextView
-                    android:id="@+id/comments_text_view"
-                    style="@style/WrapContent"
-                    android:text="16"
-                    android:textAppearance="@style/TextRegular.Secondary"
-                />
-            </LinearLayout>
-
 
             <LinearLayout
                 android:id="@+id/retweets_container"
