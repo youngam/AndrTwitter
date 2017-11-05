@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import misiulia.alex.dev.andrtwitter.entity.Tweet;
+import misiulia.alex.dev.andrtwitter.utils.DateFormatter;
 
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHolder> {
     private List<Tweet> mTweetList = new ArrayList<>();
@@ -68,7 +69,9 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
         public void bind(Tweet tweet) {
             mNameTextView.setText(tweet.getUser().getName());
             mNickTextView.setText(tweet.getUser().getNickNameFormatted());
-            mCreationDateTextView.setText(tweet.getCreatedAt());
+            String createdAt = tweet.getCreatedAt();
+            String formattedDate = DateFormatter.format(createdAt, DateFormatter.MONTH_DAY_FORMAT);
+            mCreationDateTextView.setText(formattedDate);
             mContentTextView.setText(tweet.getText());
             mRetweetsTextView.setText(String.valueOf(tweet.getRetweetCount()));
             mLikesTextView.setText(String.valueOf(tweet.getFavouriteCount()));
