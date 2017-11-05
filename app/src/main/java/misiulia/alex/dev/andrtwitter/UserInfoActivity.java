@@ -40,6 +40,10 @@ public class UserInfoActivity extends BaseActivity {
     private TextView mUrlTextView;
     private TextView mFollowingTextView;
     private TextView mFollowersTextView;
+
+    private TextView mFollowersHintTextView;
+    private TextView mFollowingHintTextView;
+
     private Toolbar mToolbar;
 
 
@@ -105,6 +109,9 @@ public class UserInfoActivity extends BaseActivity {
         mFollowersTextView = findViewById(R.id.followers_count_text_view);
         mFollowingTextView = findViewById(R.id.following_count_text_view);
 
+        mFollowingHintTextView = findViewById(R.id.following_hint_text_view);
+        mFollowersHintTextView = findViewById(R.id.followers_hint_text_view);
+
         mRecyclerView = findViewById(R.id.tweets_recycler_view);
         mCreateTweetFab = findViewById(R.id.add_tweet_fab);
         mCreateTweetFab.setOnClickListener(new View.OnClickListener() {
@@ -158,8 +165,18 @@ public class UserInfoActivity extends BaseActivity {
         mLocationTextView.setText(user.getLocation());
         mUrlTextView.setText(user.getUrl());
         mDescriptionTextView.setText(user.getDescription());
+
         mFollowersTextView.setText(String.valueOf(user.getFollowersCount()));
+        String followersHint = getQuantityString(R.plurals.followers_count, user.getFollowersCount());
+        mFollowersHintTextView.setText(followersHint);
+
         mFollowingTextView.setText(String.valueOf(user.getFavouritesCount()));
+        String followingHint = getQuantityString(R.plurals.following_count, user.getFavouritesCount());
+        mFollowingHintTextView.setText(followingHint);
+    }
+
+    private String getQuantityString(int resId, int quantity) {
+        return getResources().getQuantityString(resId, quantity);
     }
 
     private void displayTweets(Collection<Tweet> tweets) {

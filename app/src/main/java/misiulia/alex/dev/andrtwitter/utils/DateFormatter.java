@@ -12,7 +12,7 @@ public final class DateFormatter {
 
     public static String format(String dateRaw, String format) {
         SimpleDateFormat utcFormat = new SimpleDateFormat(TWITTER_RESPONSE_FORMAT, Locale.ROOT);
-        SimpleDateFormat clientFormat = new SimpleDateFormat(format, Locale.ROOT);
+        SimpleDateFormat clientFormat = new SimpleDateFormat(format, Locale.getDefault());
         try {
             Date date = utcFormat.parse(dateRaw);
         return clientFormat.format(date);

@@ -1,27 +1,35 @@
 <resources>
-    <string name="sign_in_with_twitter">Войти через Твиттер</string>
+    <string name="sign_in_with_twitter">Sign in with Twitter</string>
     <string name="app_name">AndrTwitter</string>
     <string name="com.twitter.sdk.android.CONSUMER_KEY">yHP7WOGyapkv7hlAsjO6zOURt</string>
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">YZHL3AP029AO2ycdb0kTJ9Iz8Lb0v4cFsfKZRKdQaD2Cnckgtj</string>
     <string name="user_name_hint">User Name</string>
     <string name="user_nick_hint">User Nickname</string>
     <string name="creation_date_hint">26 Oct</string>
-    <string name="user_info">Description
-    </string>
+    <string name="user_info">Description</string>
     <string name="user_location">Location</string>
-    <string name="user_link">android-learning.com/</string>
+    <string name="user_link" translatable="false">android-learning.com/</string>
 
     <string name="following_hint">Followers</string>
     <string name="followers_hint">Following</string>
 
-    <!--FA icons-->
-    <string name="fa_map_marker">\uF041</string>
-    <string name="fa_comment_o">\uf0e5</string>
-    <string name="fa_heart_o">\uf08a</string>
-    <string name="fa_link">\uf0c1</string>
-    <string name="fa_retweet">\uf079</string>
-    <string name="fa_search">\uf002</string>
-    <string name="search_hint">search</string>
+    <plurals name="following_count">
+        <item quantity="other">Following</item>
+    </plurals>
+
+    <plurals name="followers_count">
+        <item quantity="other">Followers</item>
+    </plurals>
+
     <string name="search_query_hint">Enter user name</string>
-    <string name="search">search</string>
+    <string name="search">Search</string>
+
+    <!--FA icons-->
+    <string name="fa_map_marker" translatable="false">\uF041</string>
+    <string name="fa_comment_o" translatable="false">\uf0e5</string>
+    <string name="fa_heart_o" translatable="false">\uf08a</string>
+    <string name="fa_link" translatable="false">\uf0c1</string>
+    <string name="fa_retweet" translatable="false">\uf079</string>
+    <string name="fa_search" translatable="false">\uf002</string>
+    <string name="search_hint" translatable="false">search</string>
 </resources>

@@ -1,0 +1,28 @@
+<resources>
+    <string name="sign_in_with_twitter">Войти через Твиттер</string>
+    <string name="app_name">Твиттер</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">yHP7WOGyapkv7hlAsjO6zOURt</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">YZHL3AP029AO2ycdb0kTJ9Iz8Lb0v4cFsfKZRKdQaD2Cnckgtj</string>
+    <string name="user_name_hint">Имя пользователя</string>
+    <string name="user_nick_hint">Ник пользователя</string>
+    <string name="creation_date_hint">26 Октября</string>
+    <string name="user_info">Описание</string>
+    <string name="user_location">Местоположение</string>
+    <string name="user_link">android-learning.com/</string>
+
+    <plurals name="following_count">
+        <item quantity="one">Читатель</item>
+        <item quantity="few">Читателя</item>
+    </plurals>
+
+    <plurals name="followers_count">
+        <item quantity="one">Читает</item>
+        <item quantity="other">Читают</item>
+    </plurals>
+
+    <string name="following_hint">Читает</string>
+    <string name="followers_hint">Читатели</string>
+
+    <string name="search_query_hint">Введите имя пользователя</string>
+    <string name="search">Поиск</string>
+</resources>
