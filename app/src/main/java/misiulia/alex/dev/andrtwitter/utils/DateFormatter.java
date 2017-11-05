@@ -11,11 +11,11 @@ public final class DateFormatter {
     public static final String TWITTER_RESPONSE_FORMAT="EEE MMM dd HH:mm:ss ZZZZZ yyyy";
 
     public static String format(String dateRaw, String format) {
-        SimpleDateFormat dt = new SimpleDateFormat(TWITTER_RESPONSE_FORMAT, Locale.ROOT);
-        SimpleDateFormat dt1 = new SimpleDateFormat(format, Locale.ROOT);
+        SimpleDateFormat utcFormat = new SimpleDateFormat(TWITTER_RESPONSE_FORMAT, Locale.ROOT);
+        SimpleDateFormat clientFormat = new SimpleDateFormat(format, Locale.ROOT);
         try {
-            Date date = dt.parse(dateRaw);
-        return dt1.format(date);
+            Date date = utcFormat.parse(dateRaw);
+        return clientFormat.format(date);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
