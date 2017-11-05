@@ -45,6 +45,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         notifyDataSetChanged();
     }
 
+    public void clearItems() {
+        mUsers.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return mUsers.size();

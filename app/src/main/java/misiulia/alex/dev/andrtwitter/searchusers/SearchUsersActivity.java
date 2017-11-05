@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +30,9 @@ public class SearchUsersActivity extends BaseActivity {
     private EditText mQueryEditText;
     private Button mSearchButton;
     private RecyclerView mUsersRecyclerView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+
+
     private UserAdapter mUserAdapter;
     private HttpClient mHttpClient;
 
@@ -44,11 +48,20 @@ public class SearchUsersActivity extends BaseActivity {
         setSupportActionBar(mToolbar);
         requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
+        mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                readUsers(mQueryEditText.getText().toString(), true);
+            }
+        });
+
         mQueryEditText = mToolbar.findViewById(R.id.query_edit_text);
         mSearchButton = mToolbar.findViewById(R.id.search_button);
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mUserAdapter.clearItems();
                 readUsers(mQueryEditText.getText().toString());
             }
         });
@@ -71,8 +84,23 @@ public class SearchUsersActivity extends BaseActivity {
         mHttpClient = new HttpClient();
     }
 
-    private void readUsers(final String query) {
+    private void showLoading(boolean isLoading) {
+        mSwipeRefreshLayout.setRefreshing(isLoading);
+    }
+
+        private void readUsers(final String query) {
+        readUsers(query, false);
+    }
+
+            private void readUsers(final String query, final boolean isSwipeRefresh) {
+
         new AsyncTask<Void, Void, Collection<User>>() {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                showLoading(true);
+            }
+
             @Override
             protected Collection<User> doInBackground(Void... voids) {
                 return mHttpClient.readUsers(query);
@@ -81,6 +109,12 @@ public class SearchUsersActivity extends BaseActivity {
             @Override
             protected void onPostExecute(Collection<User> users) {
                 super.onPostExecute(users);
+                if(isSwipeRefresh) {
+                    mUserAdapter.clearItems();
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
+
+                showLoading(false);
                 mUserAdapter.setItems(users);
             }
         }.execute();
