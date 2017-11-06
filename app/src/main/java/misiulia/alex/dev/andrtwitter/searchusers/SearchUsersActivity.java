@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import misiulia.alex.dev.andrtwitter.BaseActivity;
 import misiulia.alex.dev.andrtwitter.R;
@@ -61,8 +62,14 @@ public class SearchUsersActivity extends BaseActivity {
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mUserAdapter.clearItems();
-                readUsers(mQueryEditText.getText().toString());
+
+                if (mQueryEditText.getText().toString().isEmpty()) {
+                    Toast.makeText(SearchUsersActivity.this, R.string.not_enough_symbols_msg, Toast.LENGTH_SHORT).show();
+                } else {
+                    mUserAdapter.clearItems();
+                    readUsers(mQueryEditText.getText().toString());
+                }
+                
             }
         });
 

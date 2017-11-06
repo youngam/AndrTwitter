@@ -12,6 +12,9 @@
 
     <string name="following_hint">Followers</string>
     <string name="followers_hint">Following</string>
+    <string name="search_hint" translatable="false">search</string>
+    <string name="not_enough_symbols_msg">Pleast enter at least one symbol</string>
+    
 
     <plurals name="following_count">
         <item quantity="other">Following</item>
@@ -31,5 +34,4 @@
     <string name="fa_link" translatable="false">\uf0c1</string>
     <string name="fa_retweet" translatable="false">\uf079</string>
     <string name="fa_search" translatable="false">\uf002</string>
-    <string name="search_hint" translatable="false">search</string>
 </resources>
