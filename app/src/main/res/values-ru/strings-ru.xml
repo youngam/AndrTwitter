@@ -1,6 +1,6 @@
 <resources>
     <string name="sign_in_with_twitter">Войти через Твиттер</string>
-    <string name="app_name">Твиттер</string>
+    <string name="app_name">Colibri Tweet</string>
     <string name="com.twitter.sdk.android.CONSUMER_KEY">yHP7WOGyapkv7hlAsjO6zOURt</string>
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">YZHL3AP029AO2ycdb0kTJ9Iz8Lb0v4cFsfKZRKdQaD2Cnckgtj</string>
     <string name="user_name_hint">Имя пользователя</string>
