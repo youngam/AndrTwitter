@@ -1,8 +1,8 @@
 <resources>
     <string name="sign_in_with_twitter">Sign in with Twitter</string>
     <string name="app_name">Colibri Tweet</string>
-    <string name="com.twitter.sdk.android.CONSUMER_KEY">yHP7WOGyapkv7hlAsjO6zOURt</string>
-    <string name="com.twitter.sdk.android.CONSUMER_SECRET">YZHL3AP029AO2ycdb0kTJ9Iz8Lb0v4cFsfKZRKdQaD2Cnckgtj</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">TdTMnptq4WYszYc4DA39wdTDc</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">RA5pQG0Fi0gimbHZCSqGRvtVguYcnEiEvWDU5tXVrWg7rr81wy</string>
     <string name="user_name_hint">User Name</string>
     <string name="user_nick_hint">User Nickname</string>
     <string name="creation_date_hint">26 Oct</string>
