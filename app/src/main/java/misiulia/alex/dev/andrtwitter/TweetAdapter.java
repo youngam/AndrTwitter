@@ -1,6 +1,7 @@
 package misiulia.alex.dev.andrtwitter;
 
 import static android.view.LayoutInflater.from;
+import static android.view.View.GONE;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -57,6 +58,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
         private TextView mNickTextView;
         private TextView mCreationDateTextView;
         private TextView mContentTextView;
+        private ImageView mTweetImageView;
         private TextView mRetweetsTextView;
         private TextView mLikesTextView;
 
@@ -67,6 +69,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
             mNickTextView = itemView.findViewById(R.id.author_nick_text_view);
             mCreationDateTextView = itemView.findViewById(R.id.creation_date_text_view);
             mContentTextView = itemView.findViewById(R.id.tweet_content_text_view);
+            mTweetImageView = itemView.findViewById(R.id.tweet_image_view);
             mRetweetsTextView = itemView.findViewById(R.id.retweets_text_view);
             mLikesTextView = itemView.findViewById(R.id.likes_text_view);
         }
@@ -82,6 +85,11 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.TweetViewHol
             mLikesTextView.setText(String.valueOf(tweet.getFavouriteCount()));
 
             Picasso.with(itemView.getContext()).load(tweet.getUser().getBigImageUrl()).into(mUserImageView);
+
+            String tweetPhotoUrl = tweet.getPhotoUrl();
+            Picasso.with(itemView.getContext()).load(tweetPhotoUrl).into(mTweetImageView);
+            // for properly elements reusing
+            mTweetImageView.setVisibility(tweetPhotoUrl != null ? View.VISIBLE : GONE);
         }
     }
 }

@@ -1,6 +1,9 @@
 package misiulia.alex.dev.andrtwitter.entity;
 
+import static misiulia.alex.dev.andrtwitter.entity.Entities.ENTITIES;
 import static misiulia.alex.dev.andrtwitter.entity.User.USER;
+
+import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -22,6 +25,14 @@ public class Tweet {
 
     @SerializedName(USER)
     private User user;
+
+    @SerializedName(ENTITIES)
+    private Entities entities;
+
+    @Nullable
+    public String getPhotoUrl() {
+        return entities.getFirstMedia() != null ? entities.getFirstMedia().getMediaUrl() : null;
+    }
 
     public String getCreatedAt() {
         return createdAt;
@@ -65,7 +76,8 @@ public class Tweet {
         if (favouriteCount != null ? !favouriteCount.equals(tweet.favouriteCount) : tweet.favouriteCount != null) {
             return false;
         }
-        return user != null ? user.equals(tweet.user) : tweet.user == null;
+        if (user != null ? !user.equals(tweet.user) : tweet.user != null) return false;
+        return entities != null ? entities.equals(tweet.entities) : tweet.entities == null;
     }
 
     @Override
@@ -76,6 +88,7 @@ public class Tweet {
         result = 31 * result + (retweetCount != null ? retweetCount.hashCode() : 0);
         result = 31 * result + (favouriteCount != null ? favouriteCount.hashCode() : 0);
         result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (entities != null ? entities.hashCode() : 0);
         return result;
     }
 }

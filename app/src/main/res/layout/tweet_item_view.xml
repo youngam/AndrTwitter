@@ -45,9 +45,17 @@
             android:text="@string/user_info"
             android:textAppearance="@style/TextRegular.Primary"/>
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/tweet_image_view"
             android:layout_marginTop="@dimen/text_margin"
             android:layout_below="@id/tweet_content_text_view"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"/>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/text_margin"
+            android:layout_below="@id/tweet_image_view"
             style="@style/FullWidth"
             android:orientation="horizontal">
 
