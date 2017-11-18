@@ -35,11 +35,12 @@ import misiulia.alex.dev.andrtwitter.oauth.AuthPreference;
 public class HttpClient {
     private static final String API_URL = "https://api.twitter.com/1.1";
     private static final String GET = "GET";
+    private static final String EXTENDED_MODE_QUERY = "tweet_mode=extended";
 
     private Gson mGson = new Gson();
 
     public User readUserInfo(long userId) {
-        String requestUrl = format(Locale.ROOT, "%s/%s=%d", API_URL, "users/show.json?user_id", userId);
+        String requestUrl = getUrl(format(Locale.ROOT, "%s/%s=%d", API_URL, "users/show.json?user_id", userId));
         String response = getResponseString(requestUrl);
 
         User user = mGson.fromJson(response, User.class);
@@ -48,7 +49,7 @@ public class HttpClient {
     }
 
     public Collection<Tweet> readTweets(long userId) {
-        String requestUrl = format(Locale.ROOT, "%s/%s=%d", API_URL, "statuses/user_timeline.json?user_id", userId);
+        String requestUrl = getUrl(format(Locale.ROOT, "%s/%s=%d", API_URL, "statuses/user_timeline.json?user_id", userId));
         String response = getResponseString(requestUrl);
 
         Type listType = new TypeToken<ArrayList<Tweet>>(){}.getType();
@@ -65,13 +66,17 @@ public class HttpClient {
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("Can't encode query: " + query, e);
         }
-        String requestUrl = format(Locale.ROOT, "%s/%s=%s", API_URL, "users/search.json?q", encodedQuery);
+        String requestUrl = getUrl(format(Locale.ROOT, "%s/%s=%s", API_URL, "users/search.json?q", encodedQuery));
         String response = getResponseString(requestUrl);
 
         Type listType = new TypeToken<ArrayList<User>>(){}.getType();
         Log.d("LmTest", "response : " + response);
         List<User> users = mGson.fromJson(response, listType);
         return users;
+    }
+
+    private String getUrl(String url) {
+        return url + "&" + EXTENDED_MODE_QUERY;
     }
 
     @NonNull
@@ -105,7 +110,7 @@ public class HttpClient {
         String line = null;
         try {
             while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
+                sb.append(line).append("\n");
             }
         } catch (IOException e) {
             e.printStackTrace();

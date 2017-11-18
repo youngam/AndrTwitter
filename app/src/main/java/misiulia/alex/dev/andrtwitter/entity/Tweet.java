@@ -14,7 +14,7 @@ public class Tweet {
     @SerializedName("id")
     private Long id;
 
-    @SerializedName("text")
+    @SerializedName("full_text")
     private String text;
 
     @SerializedName("retweet_count")

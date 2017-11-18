@@ -51,7 +51,9 @@
             android:layout_below="@id/tweet_content_text_view"
             android:layout_centerHorizontal="true"
             android:layout_width="match_parent"
-            android:layout_height="150dp"/>
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+        />
 
         <LinearLayout
             android:layout_marginTop="@dimen/text_margin"
