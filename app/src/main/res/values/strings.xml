@@ -34,4 +34,7 @@
     <string name="fa_link" translatable="false">\uf0c1</string>
     <string name="fa_retweet" translatable="false">\uf079</string>
     <string name="fa_search" translatable="false">\uf002</string>
+
+    <!--Ionicons icons-->
+    <string name="ion_search" translatable="false"></string>
 </resources>
