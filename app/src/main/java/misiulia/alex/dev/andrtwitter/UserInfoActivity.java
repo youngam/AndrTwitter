@@ -48,7 +48,7 @@ public class UserInfoActivity extends BaseActivity {
 
 
     private RecyclerView mRecyclerView;
-    private FloatingActionButton mCreateTweetFab;
+//    private FloatingActionButton mCreateTweetFab;
     private TweetAdapter mTweetAdapter;
 
     private HttpClient mHttpClient;
@@ -113,13 +113,13 @@ public class UserInfoActivity extends BaseActivity {
         mFollowersHintTextView = findViewById(R.id.followers_hint_text_view);
 
         mRecyclerView = findViewById(R.id.tweets_recycler_view);
-        mCreateTweetFab = findViewById(R.id.add_tweet_fab);
+        /*mCreateTweetFab = findViewById(R.id.add_tweet_fab);
         mCreateTweetFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showCreateTweetDialog();
             }
-        });
+        });*/
 
         // for smooth scroll inside NestedScrollView
         ViewCompat.setNestedScrollingEnabled(mRecyclerView, false);
